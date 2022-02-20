@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <description>框架 - BOM</description>
+
+    <groupId>com.github.shijianws</groupId>
+    <artifactId>framework-bom</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- Maven变量定义 -->
+    <properties>
+        <!-- 设置文件字符集, http://maven.apache.org/general.html#encoding-warning, 资源文件也可以通过maven-resources-plugin插件指定 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- 设置编译环境 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <java.version>1.8</java.version>
+
+        <repository.release.url>http://domain:port/repository/maven-release</repository.release.url>
+        <repository.snapshot.url>http://domain:port/repository/maven-snapshots</repository.snapshot.url>
+
+        <!-- 跳过测试 -->
+        <maven.test.skip>true</maven.test.skip>
+
+        <!-- 内部项目 -->
+        <jcommon.lang.version>${project.version}</jcommon.lang.version>
+        <jcommon.spi.version>${project.version}</jcommon.spi.version>
+        <jcommon.container.version>${project.version}</jcommon.container.version>
+        <jcommon.util.version>${project.version}</jcommon.util.version>
+        <jcommon.logger.version>${project.version}</jcommon.logger.version>
+        <jcommon.metrics.version>${project.version}</jcommon.metrics.version>
+        <jcommon.trace.version>${project.version}</jcommon.trace.version>
+        <jcommon.httpclient.version>${project.version}</jcommon.httpclient.version>
+        <jcommon.core.version>${project.version}</jcommon.core.version>
+        <jcommon.api.version>${project.version}</jcommon.api.version>
+
+        <!-- 开源项目 -->
+        <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR10</spring.cloud.version>
+        <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
+
+        <slf4j.version>1.7.30</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <logback.encoder.version>6.3</logback.encoder.version>
+
+        <annotation.api.version>1.3.2</annotation.api.version>
+        <inject.api.version>1</inject.api.version>
+        <servlet.api.version>4.0.1</servlet.api.version>
+        <el.api.version>3.0.0</el.api.version>
+        <websocket.api.version>1.1</websocket.api.version>
+        <validation.api.version>2.0.1.Final</validation.api.version>
+        <hibernate.validator.version>6.1.0.Final</hibernate.validator.version>
+        <mail.api.version>1.6.2</mail.api.version>
+        <mail.sun.version>1.6.2</mail.sun.version>
+        <json.api.version>1.1.4</json.api.version>
+        <annotation.api.version>1.3.2</annotation.api.version>
+        <mail.api.version>1.6.2</mail.api.version>
+        <websocket.api.version>1.1</websocket.api.version>
+        <inject.api.version>1</inject.api.version>
+
+        <guava.version>28.1-jre</guava.version>
+        <orika.version>1.5.4</orika.version>
+        <groovy.version>3.0.5</groovy.version>
+        <scala.version>2.13.3</scala.version>
+        <bouncycastle.version>1.59</bouncycastle.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <yaml.version>1.27</yaml.version>
+        <druid.version>1.1.20</druid.version>
+        <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
+        <mybatis.version>3.5.3</mybatis.version>
+        <pagehelper.spring.version>1.2.12</pagehelper.spring.version>
+        <mysql.version>5.1.49</mysql.version>
+        <sqlite.version>3.28.0</sqlite.version>
+        <h2.version>1.4.200</h2.version>
+        <hsqldb.version>2.5.0</hsqldb.version>
+        <derby.version>10.15.1.3</derby.version>
+        <okhttp.version>3.14.4</okhttp.version>
+        <dropwizard.metrics.version>4.1.1</dropwizard.metrics.version>
+        <dubbo.version>2.7.8</dubbo.version>
+        <embedded.mysql.version>4.6.1</embedded.mysql.version>
+        <embedded.zk.version>4.6.1</embedded.zk.version>
+        <embedded.redis.version>4.6.1</embedded.redis.version>
+        <redis.lettuce.version>6.0.1.RELEASE</redis.lettuce.version>
+        <redis.jedis.version>3.2.0</redis.jedis.version>
+        <aviator.version>5.2.4</aviator.version>
+        <ql.express.version>3.2.4</ql.express.version>
+        <jsoup.version>1.12.2</jsoup.version>
+        <itextpdf.version>5.5.13.2</itextpdf.version>
+        <lombok.version>1.18.10</lombok.version>
+        <junit4.version>4.12</junit4.version>
+        <junit5.version>5.7.0</junit5.version>
+        <swagger.version>2.9.2</swagger.version>
+
+        <opentelemetry.version>1.6.0</opentelemetry.version>
+        <micrometer.version>1.6.3</micrometer.version>
+        <dropwizard.version>2.0.18</dropwizard.version>
+        <dropwizard.metrics.version>4.1.1</dropwizard.metrics.version>
+
+        <plugin.maven.resources.version>3.2.0</plugin.maven.resources.version>
+        <plugin.maven.source.version>3.2.1</plugin.maven.source.version>
+        <plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
+        <plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
+        <plugin.sonar.version>5.1</plugin.sonar.version>
+        <plugin.mybatis.generator.version>1.4.0</plugin.mybatis.generator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 内部工具 -->
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-lang</artifactId>
+                <version>${jcommon.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-spi</artifactId>
+                <version>${jcommon.spi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-container</artifactId>
+                <version>${jcommon.container.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-util</artifactId>
+                <version>${jcommon.util.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-logging</artifactId>
+                <version>${jcommon.logger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-tracing</artifactId>
+                <version>${jcommon.trace.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-metrics</artifactId>
+                <version>${jcommon.metrics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-httpclient</artifactId>
+                <version>${jcommon.httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-api</artifactId>
+                <version>${jcommon.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.shijianws</groupId>
+                <artifactId>jcommon-core</artifactId>
+                <version>${jcommon.core.version}</version>
+            </dependency>
+            <!-- 引入SpringBoot依赖清单,  它本身也引入了SpringFramework依赖清单 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Apache Dubbo BOM -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Apache Dubbo Zookeeper BOM -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!-- 引入SpringCloud依赖清单 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 引入SpringCloud Alibaba依赖清单 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Metrics -->
+            <!--
+                https://github.com/Agileaq/Dropwizard-metrics-example
+                https://blog.csdn.net/zhengwei223/article/details/78167851
+                https://www.jianshu.com/p/e4f70ddbc287
+            -->
+
+            <!-- OpenTelemetry BOM -->
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>${opentelemetry.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Micrometer BOM -->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-bom</artifactId>
+                <version>${micrometer.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Dropwizard BOM -->
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-bom</artifactId>
+                <version>${dropwizard.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Junit5 BOM -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit5.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Logback Encoder -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logback.encoder.version}</version>
+            </dependency>
+
+            <!-- Annotation -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${annotation.api.version}</version>
+            </dependency>
+            <!-- Inject -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${inject.api.version}</version>
+            </dependency>
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+            </dependency>
+            <!-- EL -->
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${el.api.version}</version>
+            </dependency>
+            <!-- WebSocket -->
+            <dependency>
+                <groupId>javax.websocket</groupId>
+                <artifactId>javax.websocket-api</artifactId>
+                <version>${websocket.api.version}</version>
+            </dependency>
+            <!-- Validation -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation.api.version}</version>
+            </dependency>
+            <!-- Hibernate Validator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+            <!-- JSON -->
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>${json.api.version}</version>
+            </dependency>
+            <!-- Annotation -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${annotation.api.version}</version>
+            </dependency>
+            <!-- Mail -->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>javax.mail-api</artifactId>
+                <version>${mail.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>${mail.sun.version}</version>
+            </dependency>
+            <!-- JSON -->
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>${json.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.websocket</groupId>
+                <artifactId>javax.websocket-api</artifactId>
+                <version>${websocket.api.version}</version>
+            </dependency>
+            <!-- Inject -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${inject.api.version}</version>
+            </dependency>
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!--Oorika -->
+            <dependency>
+                <groupId>ma.glasnost.orika</groupId>
+                <artifactId>orika-core</artifactId>
+                <version>${orika.version}</version>
+            </dependency>
+            <!-- Groovy -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <!-- Scala -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <!-- bouncycastle -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk15on</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <!-- FastJson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${yaml.version}</version>
+            </dependency>
+            <!-- 数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- Mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!-- Pagehelper分页 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.spring.version}</version>
+            </dependency>
+            <!-- MySQL-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- SQLite -->
+            <dependency>
+                <groupId>org.xerial</groupId>
+                <artifactId>sqlite-jdbc</artifactId>
+                <version>${sqlite.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- H2 -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- hsqldb -->
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>${hsqldb.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- derby -->
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>${derby.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- Okhttp -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <!-- Metrics -->
+            <!--
+                https://github.com/Agileaq/Dropwizard-metrics-example
+                https://blog.csdn.net/zhengwei223/article/details/78167851
+                https://www.jianshu.com/p/e4f70ddbc287
+            -->
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${dropwizard.metrics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-jvm</artifactId>
+                <version>${dropwizard.metrics.version}</version>
+            </dependency>
+            <!-- Spring Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- Embedded Mysql -->
+            <dependency>
+                <groupId>com.wix</groupId>
+                <artifactId>wix-embedded-mysql</artifactId>
+                <version>${embedded.mysql.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Lettuce -->
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${redis.lettuce.version}</version>
+            </dependency>
+            <!-- Jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${redis.jedis.version}</version>
+            </dependency>
+            <!-- Aviator -->
+            <dependency>
+                <groupId>com.googlecode.aviator</groupId>
+                <artifactId>aviator</artifactId>
+                <version>${aviator.version}</version>
+            </dependency>
+            <!-- QLExpress -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>QLExpress</artifactId>
+                <version>${ql.express.version}</version>
+            </dependency>
+            <!-- Jsoup -->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.itextpdf</groupId>
+                <artifactId>itextpdf</artifactId>
+                <version>${itextpdf.version}</version>
+            </dependency>
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- JUnit4 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit4.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 多环境配置参数 -->
+    <profiles>
+        <profile> <!-- 开发环境 -->
+            <id>local</id>
+            <properties>
+                <profile.active>local</profile.active> <!-- 当前环境ID -->
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault> <!-- 默认激活 -->
+            </activation>
+        </profile>
+        <profile> <!-- 测试环境 -->
+            <id>beta</id>
+            <properties>
+                <profile.active>beta</profile.active> <!-- 当前环境ID -->
+            </properties>
+        </profile>
+        <profile> <!-- 生产环境 -->
+            <id>prod</id>
+            <properties>
+                <profile.active>prod</profile.active> <!-- 当前环境ID -->
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plugin.maven.resources.version}</version>
+                    <configuration>
+                        <!-- 覆盖Spring Boot的变量替换规则 -->
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <!-- 将源码包放入仓库 -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${plugin.maven.source.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin> <!-- 打包指定格式插件 -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${plugin.maven.assembly.version}</version>
+                    <configuration>
+                        <descriptorRefs> <!-- 打包描述 -->
+                            <descriptorRef>jar-with-dependencies</descriptorRef> <!-- 依赖库放入jar包中 -->
+                        </descriptorRefs>
+                    </configuration>
+                    <executions>
+                        <execution> <!-- 插件执行命令 -->
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin.maven.compiler.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <encoding>utf8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.sonar</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${plugin.sonar.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.mybatis.generator</groupId>
+                    <artifactId>mybatis-generator-maven-plugin</artifactId>
+                    <version>${plugin.mybatis.generator.version}</version>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <overwrite>true</overwrite>
+                        <configurationFile>src/main/resources/mybatisGeneratorConfig.xml</configurationFile>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>${mysql.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- 指定deploy的发布仓库地址 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>${repository.snapshot.url}</url>
+        </snapshotRepository>
+        <repository>
+            <id>release</id>
+            <url>${repository.release.url}</url>
+        </repository>
+    </distributionManagement>
+
+    <!-- https://repo.spring.io/libs-release/ http://maven.aliyun.com/nexus/content/groups/public/ -->
+    <!-- Maven依赖下载仓库 -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <!-- Maven插件下载仓库 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

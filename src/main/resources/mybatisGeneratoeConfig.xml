@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="generatorConfiguration" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!-- 实体类实现可序列化接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <!-- 实体类生成toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- 开启支持内存分页 可生成 支持内存分布的方法及参数
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" /> -->
+
+        <!-- 实体类生成hashcode和equals方法
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
+
+        <!-- 将实体类对应的查询类的Example后缀改为其他 -->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="QueryModel" />
+        </plugin>
+
+        <!-- 自定义: 支持Mysql的limit分页 -->
+        <plugin type="mybatis.generator.plugins.page.MyPaginationPlugin" />
+
+        <!-- 自定义: 动态SQL字段查询 -->
+        <plugin type="mybatis.generator.plugins.field.MyFieldsPlugin" />
+
+        <!-- 自定义: 实体类对应的DAO层接口的Mapper后缀改为其他 -->
+        <plugin type="mybatis.generator.plugins.rename.MyRenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper$" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+
+        <!-- 自定义: 实体类对应的DAO层接口对应的xml文件的Mapper后缀改为其他 -->
+        <plugin type="mybatis.generator.plugins.rename.MyRenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="Dao" />
+        </plugin>
+
+        <!-- 自定义: 实体类的查询类实现指定类 -->
+        <plugin type="mybatis.generator.plugins.supper.MyExtendsAndImplementsPlugin">
+            <property name="className" value="com.soct.model.QueryModel" />
+        </plugin>
+
+        <!-- 修改所有数据访问接口中方法名称中的关键字 -->
+        <plugin type="mybatis.generator.plugins.rename.MyRenameMapperKeywords">
+            <property name="selective" value="part" />
+        </plugin>
+
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除mybatis自动生成的成员属性注释, true: 去除 -->
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+
+        <!-- 使用自定义注释生成类
+        <commentGenerator type="mybatis.generator.plugins.comment.MyCommentGenerator" /> -->
+
+        <!--数据库连接的信息: 驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://${host}:${port}/database?characterEncoding=utf8&amp;useSSL=false"
+                        userId="root"
+                        password="123456"/>
+
+        <!-- Oracle数据库
+        <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"
+                        userId="socct"
+                        password="tiger"
+        /> -->
+
+        <javaTypeResolver>
+            <!-- 默认false, 把JDBC的DECIMAL和NUMERIC类型解析为Integer, 如果为true则把JDBC的DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="model" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <property name="constructorBased" value="false"/>
+            <property name="immutable" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!-- targetProject:mapper映射xml文件生成的位置 -->
+        <sqlMapGenerator targetPackage="sqlmapper" targetProject="src/main/resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- targetPackage: mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="dao" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 表 -->
+        <!-- 指定数据库所有表
+        <table schema="" tableName="%" /> -->
+
+        <!-- 指定表 -->
+        <table schema="" tableName="t_app_table" domainObjectName="Entity">
+            <domainObjectRenamingRule searchString="^t_app" replaceString=""/>
+            <columnRenamingRule searchString="^f_" replaceString=""/>
+        </table>
+
+    </context>
+</generatorConfiguration>
